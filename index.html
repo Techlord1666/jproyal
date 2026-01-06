@@ -60,75 +60,94 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative bg-white dark:bg-background-dark py-8 lg:py-20">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
-                <div class="flex flex-1 flex-col gap-6 lg:max-w-[50%]">
-                    <div class="inline-flex w-fit items-center gap-2 rounded-full bg-purple-50 dark:bg-purple-900/30 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
-                        <span class="h-2 w-2 rounded-full bg-gold animate-pulse"></span>
-                        Now Serving Shomolu, Lagos
-                    </div>
-                    <h1 class="text-3xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
-                        Fresh Clothes, <span class="text-primary">Royal Treatment.</span>
-                    </h1>
-                    <p class="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-                        Experience premium laundry &amp; dry cleaning services in Lagos. We handle your garments with professional care so you can focus on what matters.
-                    </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Same Day Pickup</div>
-                        <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Eco-Friendly</div>
-                        <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Expert Care</div>
-                    </div>
+    <!-- UPDATED HERO SECTION ALONE -->
+<section class="relative bg-white dark:bg-background-dark py-8 lg:py-20">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
+            
+            <!-- Content Left -->
+            <div class="flex flex-1 flex-col gap-6 lg:max-w-[50%]">
+                <div class="inline-flex w-fit items-center gap-2 rounded-full bg-purple-50 dark:bg-purple-900/30 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+                    <span class="h-2 w-2 rounded-full bg-gold animate-pulse"></span>
+                    Now Serving Shomolu, Lagos
+                </div>
+                
+                <!-- Added Hero Image for Mobile (Shows above text on small screens) -->
+                <div class="block lg:hidden w-full h-48 sm:h-64 rounded-2xl overflow-hidden shadow-lg mb-4">
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=800" 
+                         alt="Professional Cleaning" 
+                         class="w-full h-full object-cover">
                 </div>
 
-                <!-- Pickup Form -->
-                <div class="flex flex-1 justify-center lg:justify-end w-full">
-                    <div class="w-full max-w-[480px] rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-2xl ring-1 ring-slate-900/5 sm:p-8">
-                        <h3 class="mb-6 text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">calendar_clock</span>
-                            Schedule a Pickup
-                        </h3>
-                        <form id="bookingForm" class="flex flex-col gap-4">
+                <h1 class="text-3xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
+                    Fresh Clothes, <span class="text-primary">Royal Treatment.</span>
+                </h1>
+                
+                <p class="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+                    Experience premium laundry &amp; dry cleaning services in Lagos. We handle your garments with professional care so you can focus on what matters.
+                </p>
+
+                <!-- Hero Image for Desktop (Shows only on large screens next to the form) -->
+                <div class="hidden lg:block w-full h-64 rounded-2xl overflow-hidden shadow-xl border-4 border-white dark:border-slate-800">
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=1200" 
+                         alt="Cleaning Services" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Same Day Pickup</div>
+                    <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Eco-Friendly</div>
+                    <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Expert Care</div>
+                </div>
+            </div>
+
+            <!-- Booking Form Right -->
+            <div class="flex flex-1 justify-center lg:justify-end w-full">
+                <div class="w-full max-w-[480px] rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-2xl ring-1 ring-slate-900/5 sm:p-8">
+                    <h3 class="mb-6 text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">calendar_clock</span>
+                        Schedule a Pickup
+                    </h3>
+                    <form id="bookingForm" class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gold text-[20px]">person</span>
+                                <input id="userName" required class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 pl-10 text-sm text-slate-900 focus:ring-1 focus:ring-primary dark:bg-slate-900 dark:text-white dark:border-slate-700" placeholder="Enter your name" type="text"/>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Phone Number</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gold text-[20px]">phone</span>
+                                <input id="userPhone" required class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 pl-10 text-sm text-slate-900 focus:ring-1 focus:ring-primary dark:bg-slate-900 dark:text-white dark:border-slate-700" placeholder="+234..." type="tel"/>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
-                                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>
-                                <div class="relative">
-                                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gold text-[20px]">person</span>
-                                    <input id="userName" required class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 pl-10 text-sm text-slate-900 focus:ring-1 focus:ring-primary dark:bg-slate-900 dark:text-white dark:border-slate-700" placeholder="Enter your name" type="text"/>
-                                </div>
+                                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Service Type</label>
+                                <select id="userType" class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 px-3 text-sm dark:bg-slate-900 dark:text-white dark:border-slate-700">
+                                    <option>Wash & Fold</option>
+                                    <option>Dry Cleaning</option>
+                                    <option>Ironing Only</option>
+                                    <option>Household Items</option>
+                                </select>
                             </div>
                             <div class="flex flex-col gap-1.5">
-                                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Phone Number</label>
-                                <div class="relative">
-                                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gold text-[20px]">phone</span>
-                                    <input id="userPhone" required class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 pl-10 text-sm text-slate-900 focus:ring-1 focus:ring-primary dark:bg-slate-900 dark:text-white dark:border-slate-700" placeholder="+234..." type="tel"/>
-                                </div>
+                                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Pickup Date</label>
+                                <input id="userDate" required class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 px-3 text-sm dark:bg-slate-900 dark:text-white dark:border-slate-700" type="date"/>
                             </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="flex flex-col gap-1.5">
-                                    <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Service Type</label>
-                                    <select id="userType" class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 px-3 text-sm dark:bg-slate-900 dark:text-white dark:border-slate-700">
-                                        <option>Wash & Fold</option>
-                                        <option>Dry Cleaning</option>
-                                        <option>Ironing Only</option>
-                                        <option>Household Items</option>
-                                    </select>
-                                </div>
-                                <div class="flex flex-col gap-1.5">
-                                    <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Pickup Date</label>
-                                    <input id="userDate" required class="h-12 w-full rounded-lg border-slate-200 bg-slate-50 px-3 text-sm dark:bg-slate-900 dark:text-white dark:border-slate-700" type="date"/>
-                                </div>
-                            </div>
-                            <button type="submit" class="mt-2 flex h-12 w-full items-center justify-center rounded-lg bg-primary text-base font-bold text-white transition-all hover:bg-primary-hover active:scale-95 shadow-lg">
-                                Book Pickup Now
-                            </button>
-                            <p class="text-center text-xs text-slate-500">Redirects to WhatsApp for confirmation.</p>
-                        </form>
-                    </div>
+                        </div>
+                        <button type="submit" class="mt-2 flex h-12 w-full items-center justify-center rounded-lg bg-primary text-base font-bold text-white transition-all hover:bg-primary-hover active:scale-95 shadow-lg">
+                            Book Pickup Now
+                        </button>
+                        <p class="text-center text-xs text-slate-500">Redirects to WhatsApp for confirmation.</p>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Services Section -->
     <section class="bg-background-light dark:bg-background-dark py-12 lg:py-24" id="services">
