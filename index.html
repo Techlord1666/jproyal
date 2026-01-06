@@ -3,11 +3,15 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>JP Royal Cleaning Services | Premium Laundry</title>
+    <title>JP Royal Cleaning Services | Professional Laundry</title>
+    
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -26,255 +30,295 @@
             },
         }
     </script>
+
     <style>
         html { scroll-behavior: smooth; }
-        .chat-window { bottom: 85px; right: 20px; width: 320px; height: 450px; display: none; flex-direction: column; z-index: 1000; }
-        .chat-window.active { display: flex; }
-        @media (max-width: 640px) { .chat-window { width: 90%; right: 5%; bottom: 80px; } }
+        /* Custom scrollbar for chat */
+        #chatBody::-webkit-scrollbar { width: 4px; }
+        #chatBody::-webkit-scrollbar-thumb { background: #5b21b6; border-radius: 10px; }
+        
+        /* Chat Window Animation */
+        .chat-popup { transform: translateY(20px); opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+        .chat-popup.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors">
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200">
 
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-    <!-- Header -->
+    
+    <!-- NAVIGATION -->
     <header class="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-background-dark/95 px-4 py-4 backdrop-blur-md lg:px-10">
-        <div class="flex items-center gap-2 sm:gap-3">
+        <div class="flex items-center gap-2">
             <div class="flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
                 <span class="material-symbols-outlined text-2xl">local_laundry_service</span>
             </div>
-            <h2 class="text-lg font-bold tracking-tight">JP Royal Cleaning</h2>
+            <h2 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">JP Royal Cleaning</h2>
         </div>
         
-        <nav class="hidden md:flex gap-8">
-            <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
+        <nav class="hidden md:flex gap-6">
             <a class="text-sm font-medium hover:text-primary transition-colors" href="#services">Services</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
             <a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
         </nav>
 
-        <div class="flex items-center gap-4">
-            <a class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white transition-transform hover:scale-105 shadow-lg" href="tel:+2348050951022">
-                <span class="material-symbols-outlined text-[18px] text-yellow-300">call</span>
-                <span class="hidden sm:inline">Call Now</span>
-            </a>
-        </div>
+        <a class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white hover:bg-primary-hover shadow-lg transition-all" href="tel:+2348050951022">
+            <span class="material-symbols-outlined text-[18px] text-yellow-300">call</span>
+            <span class="hidden xs:inline">Call Now</span>
+        </a>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative bg-white dark:bg-background-dark py-10 lg:py-20">
+    <!-- HERO & PICKUP FORM -->
+    <section class="relative py-10 lg:py-20 bg-white dark:bg-background-dark">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col gap-12 lg:flex-row lg:items-center">
-                <div class="flex flex-col gap-6 lg:max-w-[50%]">
-                    <div class="inline-flex w-fit items-center gap-2 rounded-full bg-purple-50 dark:bg-purple-900/30 px-3 py-1 text-xs font-semibold text-primary">
+                
+                <!-- Hero Text -->
+                <div class="flex flex-col gap-6 lg:w-1/2">
+                    <div class="inline-flex w-fit items-center gap-2 rounded-full bg-purple-50 dark:bg-purple-900/30 px-3 py-1 text-xs font-semibold text-primary uppercase tracking-wider">
                         <span class="h-2 w-2 rounded-full bg-gold animate-pulse"></span>
                         Now Serving Shomolu, Lagos
                     </div>
-                    <h1 class="text-4xl font-black leading-tight sm:text-6xl">
+                    <h1 class="text-4xl font-black leading-tight sm:text-6xl text-slate-900 dark:text-white">
                         Fresh Clothes, <br/><span class="text-primary">Royal Treatment.</span>
                     </h1>
-                    <p class="text-lg text-slate-600 dark:text-slate-400">
-                        Experience premium laundry & dry cleaning in Shomolu. We pick up, clean, and deliver while you relax.
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg">
+                        Premium laundry and dry cleaning delivered to your doorstep. We handle the stains, you enjoy your weekend.
                     </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
-                        <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Same Day Pickup</div>
-                        <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Stain Removal Experts</div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> Professional Stain Removal</div>
+                        <div class="flex items-center gap-2 text-sm font-medium"><span class="material-symbols-outlined text-gold">check_circle</span> 24-48 Hour Turnaround</div>
                     </div>
                 </div>
 
-                <!-- Booking Form -->
-                <div class="flex flex-1 justify-center lg:justify-end">
-                    <div class="w-full max-w-[480px] rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-2xl ring-1 ring-black/5 sm:p-8">
-                        <h3 class="mb-6 text-xl font-bold flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">calendar_clock</span>
+                <!-- Pickup Form (Connects to WhatsApp) -->
+                <div class="lg:w-1/2 flex justify-center lg:justify-end">
+                    <div class="w-full max-w-[450px] bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-black/5">
+                        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">calendar_month</span>
                             Schedule a Pickup
                         </h3>
-                        <form id="pickupForm" class="flex flex-col gap-4">
+                        <form id="whatsappForm" class="space-y-4">
                             <div>
-                                <label class="text-sm font-medium">Full Name</label>
-                                <input id="userName" required class="mt-1 w-full rounded-lg border-slate-200 bg-slate-50 dark:bg-slate-900 dark:border-slate-700 p-3 outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your name" type="text"/>
+                                <label class="text-xs font-bold uppercase text-slate-500">Full Name</label>
+                                <input type="text" id="formName" required class="w-full mt-1 rounded-lg border-slate-200 dark:bg-slate-900 dark:border-slate-700 p-3 outline-none focus:ring-2 focus:ring-primary" placeholder="John Doe">
                             </div>
                             <div>
-                                <label class="text-sm font-medium">Phone Number</label>
-                                <input id="userPhone" required class="mt-1 w-full rounded-lg border-slate-200 bg-slate-50 dark:bg-slate-900 dark:border-slate-700 p-3 outline-none focus:ring-2 focus:ring-primary" placeholder="+234..." type="tel"/>
+                                <label class="text-xs font-bold uppercase text-slate-500">Phone Number</label>
+                                <input type="tel" id="formPhone" required class="w-full mt-1 rounded-lg border-slate-200 dark:bg-slate-900 dark:border-slate-700 p-3 outline-none focus:ring-2 focus:ring-primary" placeholder="0805 000 0000">
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="text-sm font-medium">Service</label>
-                                    <select id="serviceType" class="mt-1 w-full rounded-lg border-slate-200 bg-slate-50 dark:bg-slate-900 dark:border-slate-700 p-3">
+                                    <label class="text-xs font-bold uppercase text-slate-500">Service</label>
+                                    <select id="formService" class="w-full mt-1 rounded-lg border-slate-200 dark:bg-slate-900 dark:border-slate-700 p-3">
                                         <option>Wash & Fold</option>
                                         <option>Dry Cleaning</option>
                                         <option>Ironing Only</option>
+                                        <option>Household Items</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="text-sm font-medium">Date</label>
-                                    <input id="pickupDate" required class="mt-1 w-full rounded-lg border-slate-200 bg-slate-50 dark:bg-slate-900 dark:border-slate-700 p-3" type="date"/>
+                                    <label class="text-xs font-bold uppercase text-slate-500">Pickup Date</label>
+                                    <input type="date" id="formDate" required class="w-full mt-1 rounded-lg border-slate-200 dark:bg-slate-900 dark:border-slate-700 p-3">
                                 </div>
                             </div>
-                            <button type="submit" class="mt-2 w-full rounded-lg bg-primary py-4 text-white font-bold hover:bg-primary-hover shadow-lg transition-all">
+                            <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white font-bold py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">send</span>
                                 Book Pickup Now
                             </button>
+                            <p class="text-center text-[10px] text-slate-400">Your request will be sent directly to our WhatsApp</p>
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="bg-slate-50 dark:bg-slate-900/50 py-16">
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-16 bg-slate-50 dark:bg-slate-900/50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Our Royal Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold mb-4">Our Services</h2>
+                <p class="text-slate-600 dark:text-slate-400">Everything from everyday laundry to luxury garment care.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Item 1 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all">
                     <span class="material-symbols-outlined text-4xl text-gold mb-4">dry_cleaning</span>
-                    <h3 class="text-xl font-bold mb-2">Dry Cleaning</h3>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4">Expert care for suits, gowns, and delicate fabrics.</p>
-                    <span class="text-primary font-bold">From ₦1,500</span>
+                    <h3 class="font-bold text-lg mb-2">Dry Cleaning</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Suits, Wedding Gowns, and Corporate wear.</p>
+                    <p class="text-primary font-bold">From ₦1,500</p>
                 </div>
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">
+                <!-- Item 2 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all">
                     <span class="material-symbols-outlined text-4xl text-gold mb-4">local_laundry_service</span>
-                    <h3 class="text-xl font-bold mb-2">Wash & Fold</h3>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4">Bulk laundry washed and neatly folded for you.</p>
-                    <span class="text-primary font-bold">From ₦800/kg</span>
+                    <h3 class="font-bold text-lg mb-2">Wash & Fold</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Everyday laundry, cleaned and neatly folded.</p>
+                    <p class="text-primary font-bold">From ₦800/kg</p>
                 </div>
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary transition-all">
+                <!-- Item 3 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all">
                     <span class="material-symbols-outlined text-4xl text-gold mb-4">iron</span>
-                    <h3 class="text-xl font-bold mb-2">Steam Ironing</h3>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4">Sharp, professional wrinkle-free ironing.</p>
-                    <span class="text-primary font-bold">From ₦500</span>
+                    <h3 class="font-bold text-lg mb-2">Ironing Only</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Professional steam pressing for your clothes.</p>
+                    <p class="text-primary font-bold">From ₦500</p>
+                </div>
+                <!-- Item 4 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all">
+                    <span class="material-symbols-outlined text-4xl text-gold mb-4">bed</span>
+                    <h3 class="font-bold text-lg mb-2">Household</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Bed sheets, curtains, and duvet cleaning.</p>
+                    <p class="text-primary font-bold">Custom Quote</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">Need Help?</h2>
-            <p class="mb-8 text-slate-600 dark:text-slate-400">Visit us or call our support line</p>
-            <div class="flex flex-col md:flex-row justify-center gap-8">
-                <div class="flex flex-col items-center">
-                    <span class="material-symbols-outlined text-primary text-3xl mb-2">location_on</span>
-                    <p class="font-bold">Ijagbemi Street, Shomolu, Lagos</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="material-symbols-outlined text-primary text-3xl mb-2">call</span>
-                    <a href="tel:+2348050951022" class="font-bold text-xl">+234 805 095 1022</a>
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 bg-white dark:bg-background-dark">
+        <div class="container mx-auto px-4">
+            <div class="rounded-3xl bg-primary p-8 lg:p-16 text-white text-center flex flex-col items-center gap-6">
+                <h2 class="text-3xl font-bold">Ready to get started?</h2>
+                <p class="max-w-xl opacity-90">Call us now or chat with our AI assistant for an instant quote.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="tel:+2348050951022" class="bg-white text-primary px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:scale-105 transition-all">
+                        <span class="material-symbols-outlined">call</span> Call +234 805 095 1022
+                    </a>
+                    <a href="https://wa.me/2348050951022" class="bg-green-500 text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:scale-105 transition-all">
+                        <span class="material-symbols-outlined">chat</span> Chat via WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 px-4 text-center">
-        <p class="text-sm text-slate-500">© 2026 JP Royal Cleaning Services. All rights reserved.</p>
+    <!-- FOOTER -->
+    <footer class="py-10 border-t border-slate-200 dark:border-slate-800 text-center">
+        <div class="container mx-auto px-4">
+            <p class="text-sm text-slate-500">© 2026 JP Royal Cleaning Services. Ijagbemi Street, Shomolu, Lagos.</p>
+        </div>
     </footer>
 
-    <!-- AI CHAT WIDGET -->
-    <!-- Chat Button -->
-    <button onclick="toggleChat()" class="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">
-        <span id="chatIcon" class="material-symbols-outlined text-3xl">smart_toy</span>
-    </button>
-
-    <!-- Chat Window -->
-    <div id="chatWindow" class="chat-window fixed bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-        <!-- Chat Header -->
-        <div class="bg-primary p-4 text-white flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined">account_circle</span>
-                <div>
-                    <p class="text-sm font-bold leading-none">Royal AI Assistant</p>
-                    <p class="text-[10px] opacity-80">Online | Fast Response</p>
+    <!-- AI CHAT ASSISTANT WIDGET -->
+    <div class="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
+        
+        <!-- Chat Popup -->
+        <div id="aiChatWindow" class="chat-popup mb-4 w-[320px] sm:w-[360px] bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-100 dark:border-slate-700 flex flex-col">
+            <!-- Header -->
+            <div class="bg-primary p-4 text-white flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-sm">smart_toy</span>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold leading-none">Royal AI</p>
+                        <p class="text-[10px] opacity-75">Online | Instant Help</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="material-symbols-outlined hover:rotate-90 transition-all">close</button>
+            </div>
+            
+            <!-- Chat Body -->
+            <div id="chatBody" class="h-80 overflow-y-auto p-4 flex flex-col gap-3 bg-slate-50 dark:bg-slate-900">
+                <div class="bg-white dark:bg-slate-800 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-sm shadow-sm border border-slate-100 dark:border-slate-700 max-w-[85%]">
+                    Hello! I'm your JP Royal Assistant. How can I help you today?
+                    <div class="mt-2 flex flex-wrap gap-1">
+                        <button onclick="quickAsk('Prices')" class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-full">Prices</button>
+                        <button onclick="quickAsk('Location')" class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-full">Location</button>
+                        <button onclick="quickAsk('Booking')" class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-full">How to book?</button>
+                    </div>
                 </div>
             </div>
-            <button onclick="toggleChat()" class="material-symbols-outlined text-xl">close</button>
-        </div>
-        
-        <!-- Messages Area -->
-        <div id="chatBody" class="flex-1 p-4 overflow-y-auto flex flex-col gap-3 bg-slate-50 dark:bg-slate-900">
-            <div class="bg-white dark:bg-slate-800 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-sm text-sm border border-slate-100 dark:border-slate-700 max-w-[85%]">
-                Hello! 👋 I'm your JP Royal Assistant. How can I help you with your laundry today?
+
+            <!-- Chat Input -->
+            <div class="p-3 bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 flex gap-2">
+                <input id="chatInput" type="text" placeholder="Ask me anything..." class="flex-1 text-sm bg-slate-100 dark:bg-slate-900 border-none rounded-lg focus:ring-2 focus:ring-primary px-3 py-2">
+                <button onclick="handleUserMessage()" class="bg-primary text-white p-2 rounded-lg">
+                    <span class="material-symbols-outlined text-sm">send</span>
+                </button>
             </div>
         </div>
 
-        <!-- Typing Indicator -->
-        <div id="typing" class="px-4 py-1 text-[10px] italic text-slate-500 hidden">AI is typing...</div>
-
-        <!-- Input Area -->
-        <div class="p-3 bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 flex gap-2">
-            <input id="chatInput" type="text" placeholder="Type a message..." class="flex-1 bg-slate-100 dark:bg-slate-900 border-none rounded-lg text-sm focus:ring-1 focus:ring-primary"/>
-            <button onclick="handleChat()" class="bg-primary text-white p-2 rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-sm">send</span>
-            </button>
-        </div>
+        <!-- Floating Toggle Button -->
+        <button onclick="toggleChat()" class="w-14 h-14 bg-primary rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transition-all">
+            <span id="aiIcon" class="material-symbols-outlined text-3xl">smart_toy</span>
+        </button>
     </div>
+
 </div>
 
+<!-- SCRIPTS -->
 <script>
-    // FORM LOGIC: Redirect to WhatsApp
-    document.getElementById('pickupForm').addEventListener('submit', function(e) {
+    // 1. WHATSAPP FORM LOGIC
+    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const name = document.getElementById('userName').value;
-        const phone = document.getElementById('userPhone').value;
-        const service = document.getElementById('serviceType').value;
-        const date = document.getElementById('pickupDate').value;
-        const message = `Hello JP Royal Cleaning!%0A%0A*Booking Details*%0AName: ${name}%0APhone: ${phone}%0AService: ${service}%0APickup Date: ${date}`;
-        window.open(`https://wa.me/2348050951022?text=${message}`, '_blank');
+        
+        const name = document.getElementById('formName').value;
+        const phone = document.getElementById('formPhone').value;
+        const service = document.getElementById('formService').value;
+        const date = document.getElementById('formDate').value;
+        
+        const text = `Hello JP Royal Cleaning!%0A%0A*NEW PICKUP REQUEST*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Service:* ${service}%0A*Date:* ${date}`;
+        
+        window.open(`https://wa.me/2348050951022?text=${text}`, '_blank');
     });
 
-    // AI CHAT LOGIC
+    // 2. AI CHATBOT LOGIC
     function toggleChat() {
-        const chat = document.getElementById('chatWindow');
-        chat.classList.toggle('active');
+        document.getElementById('aiChatWindow').classList.toggle('active');
+        const icon = document.getElementById('aiIcon');
+        icon.innerText = icon.innerText === 'smart_toy' ? 'keyboard_arrow_down' : 'smart_toy';
     }
 
-    function appendMessage(text, isUser = false) {
-        const chatBody = document.getElementById('chatBody');
-        const msgDiv = document.createElement('div');
-        msgDiv.className = isUser 
-            ? "bg-primary text-white p-3 rounded-tl-xl rounded-bl-xl rounded-br-xl shadow-sm text-sm self-end max-w-[85%]"
-            : "bg-white dark:bg-slate-800 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-sm text-sm border border-slate-100 dark:border-slate-700 self-start max-w-[85%]";
-        msgDiv.innerText = text;
-        chatBody.appendChild(msgDiv);
-        chatBody.scrollTop = chatBody.scrollHeight;
+    function quickAsk(topic) {
+        document.getElementById('chatInput').value = topic;
+        handleUserMessage();
     }
 
-    async function handleChat() {
+    function appendMsg(text, isUser = false) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = isUser 
+            ? "self-end bg-primary text-white p-3 rounded-tl-xl rounded-bl-xl rounded-br-xl text-sm shadow-sm max-w-[85%]" 
+            : "self-start bg-white dark:bg-slate-800 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-sm shadow-sm border border-slate-100 dark:border-slate-700 max-w-[85%]";
+        div.innerText = text;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function handleUserMessage() {
         const input = document.getElementById('chatInput');
-        const userText = input.value.trim().toLowerCase();
-        if (!userText) return;
+        const msg = input.value.trim();
+        if(!msg) return;
 
-        appendMessage(input.value, true);
+        appendMsg(msg, true);
         input.value = "";
 
-        // Show typing indicator
-        const typing = document.getElementById('typing');
-        typing.classList.remove('hidden');
-
-        // Simulate AI "thinking" time
+        // Simulated AI Logic
         setTimeout(() => {
-            typing.classList.add('hidden');
-            let response = "";
+            const lowMsg = msg.toLowerCase();
+            let reply = "I'm not quite sure, but you can call our manager at +234 805 095 1022 for direct help!";
 
-            if (userText.includes("price") || userText.includes("cost") || userText.includes("how much")) {
-                response = "Our prices start at ₦800 per KG for Wash & Fold, and ₦1,500 for Dry Cleaning items. Would you like to see a full list?";
-            } else if (userText.includes("where") || userText.includes("location") || userText.includes("address")) {
-                response = "We are located at Ijagbemi Street, Shomolu, Lagos. We also offer free pickup in the Shomolu area!";
-            } else if (userText.includes("book") || userText.includes("clean") || userText.includes("pickup")) {
-                response = "I can help with that! You can use the form on our website or I can connect you directly to our manager on WhatsApp at +2348050951022.";
-            } else if (userText.includes("time") || userText.includes("open") || userText.includes("hours")) {
-                response = "We are open Monday to Friday (8am - 6pm) and Saturdays (9am - 5pm).";
-            } else {
-                response = "I'm not sure I understand, but I'd love to help! Would you like to speak with a human on WhatsApp or hear about our services?";
+            if(lowMsg.includes('price') || lowMsg.includes('cost') || lowMsg.includes('much')) {
+                reply = "Our prices are very affordable! Wash & Fold is ₦800/kg, Dry Cleaning starts at ₦1,500, and Ironing starts at ₦500. Would you like to book a pickup?";
+            } else if (lowMsg.includes('where') || lowMsg.includes('location') || lowMsg.includes('address')) {
+                reply = "We are located at Ijagbemi Street, Shomolu, Lagos. We serve all areas around Shomolu and Akoka!";
+            } else if (lowMsg.includes('time') || lowMsg.includes('open') || lowMsg.includes('hours')) {
+                reply = "We are open Monday to Friday from 8:00 AM to 6:00 PM, and Saturdays from 9:00 AM to 5:00 PM.";
+            } else if (lowMsg.includes('book') || lowMsg.includes('laundry') || lowMsg.includes('clean')) {
+                reply = "You can book right here on the website using the form at the top, or just send us a WhatsApp message at +234 805 095 1022!";
+            } else if (lowMsg.includes('hello') || lowMsg.includes('hi')) {
+                reply = "Hello! I am your Royal AI. How can I make your day easier today?";
             }
 
-            appendMessage(response, false);
-        }, 1000);
+            appendMsg(reply, false);
+        }, 800);
     }
 
-    // Allow Enter key to send chat
-    document.getElementById('chatInput').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') handleChat();
+    // Enter to send
+    document.getElementById('chatInput').addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') handleUserMessage();
     });
 </script>
 
